@@ -1,0 +1,55 @@
+body {
+    height: 100vh;
+    /* Garante que o body ocupe toda a altura da tela */
+    margin: 0;
+    /* Remove margens padrão */
+}
+
+.sidebar {
+    position: fixed;
+    /* Sidebar fixa */
+    height: 100%;
+    /* Ocupa toda a altura */
+    width: 280px;
+    /* Largura da sidebar */
+    background-color: #343a40;
+    /* Cor de fundo escura */
+    color: #fff;
+    /* Cor do texto em branco */
+}
+
+.main-content {
+    margin-left: 280px;
+    /* Deixa espaço para a sidebar */
+    padding: 20px;
+    /* Espaçamento interno do conteúdo principal */
+}
+
+.link-body-emphasis {
+    color: #fff;
+    /* Cor do texto dos links na sidebar */
+    margin-left: 20px;
+    font-size: 1.1rem;
+    /* Aumenta o tamanho da fonte */
+    transition: font-size 0.2s;
+    /* Transição suave para o hover */
+}
+
+.link-body-emphasis:hover {
+    text-decoration: underline;
+    /* Efeito ao passar o mouse */
+    font-size: 1.2rem;
+    /* Aumenta o tamanho da fonte no hover */
+}
+
+.btn-toggle {
+    color: #fff;
+    /* Cor dos botões na sidebar */
+    font-size: 1.1rem;
+    /* Aumenta o tamanho da fonte dos botões */
+}
+
+.btn-toggle:hover {
+    font-size: 1.2rem;
+    /* Aumenta o tamanho da fonte no hover */
+}

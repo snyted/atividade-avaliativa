@@ -1,0 +1,50 @@
+{% extends "app\index.html" %}
+
+{% block content %}
+<main class="main-content">
+    <form class="row g-3">
+        <div class="col-md-6">
+            <label for="inputEmail4" class="form-label">Colaborador</label>
+            <input type="text" class="form-control" id="inputColaborador" required>
+        </div>
+        <div class="col-md">
+            <label for="inputMaterial" class="form-label">Material</label>
+            <input type="text" class="form-control" id="inputMaterial" required>
+        </div>
+        <div class="col-12">
+            <label for="inputData" class="form-label">Data de Empréstimo</label>
+            <input type="date" class="form-control" id="inputData" required>
+        </div>
+        <div class="col-12-6">
+            <label for="inputData2" class="form-label">Data Prevista de Devolução</label>
+            <input type="date" class="form-control" id="inputData2" required>
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">Status</label>
+            <select class="d-block; form-control" name="select" required>
+                <option value="emprestado">Emprestado</option>
+                <option value="emuso">Em Uso</option>
+                <option value="fornecido">Fornecido</option>
+                <option value="devolvido">Devolvido</option>
+                <option value="danificado">Danificado</option>
+                <option value="perdido">Perdido</option>
+            </select>
+        </div>
+        <div class="col-12-6">
+            <label for="inputCondicao" class="form-label">Condições do Equipamento no Empréstimo</label>
+            <input type="text" class="form-control" id="inputCondicao">
+        </div>
+        <div class="col-12-6">
+            <label for="inputDevo" class="form-label">Data da Devolução</label>
+            <input type="text" class="form-control" id="inputDevo" required>
+        </div>
+        <div class="col-12-6">
+            <label for="inputObs" class="form-label">Observação na devolução/perda</label>
+            <input type="text" class="form-control" id="inputObs">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Registrar Ação</button>
+        </div>
+    </form>
+</main>
+{% endblock content %}
