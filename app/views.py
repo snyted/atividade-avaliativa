@@ -12,10 +12,9 @@ def cadastrar_equipamentos(request):
     if request.method == 'POST':
         equipamento = request.POST.get('equipamento')
         quantidade = request.POST.get('quantidade')
-        print(f'Equipamento: {equipamento}, Quantidade: {quantidade}')  # Debugging
+        print(f'Equipamento: {equipamento}, Quantidade: {quantidade}')
         if equipamento and quantidade:
             Equipamentos.objects.create(equipamento=equipamento, quantidade=quantidade)
-            # Redirecionar ou renderizar uma página de sucesso
     return render(request, 'app/globals/cadastrar_equipamentos.html')
 
 def listar_equipamentos(request):
@@ -35,15 +34,24 @@ def deletar_equipamento(request, equipamento_id):
 def editar_equipamento(request):
     if request.method == 'POST':
         equipamento_id = request.POST.get('equipamento_id')
+        print(f'Equipamento ID recebido: {equipamento_id}')  # Debugging
+
         novo_nome = request.POST.get('equipamento')
         nova_quantidade = request.POST.get('quantidade')
+        print(f'Novo Nome: {novo_nome}, Nova Quantidade: {nova_quantidade}')  # Debugging
 
-        equipamento = get_object_or_404(Equipamentos, id=equipamento_id)
+        if equipamento_id:
+            # Tente pegar o objeto e atualizá-lo
+            try:
+                equipamento = get_object_or_404(Equipamentos, id=equipamento_id)
+                equipamento.equipamento = novo_nome
+                equipamento.quantidade = nova_quantidade
+                equipamento.save()
 
-        equipamento.equipamento = novo_nome
-        equipamento.quantidade = nova_quantidade
+                messages.success(request, 'Equipamento atualizado com sucesso!')
+            except Exception as e:
+                print(f'Ocorreu um erro: {e}')  # Debugging
+        else:
+            messages.error(request, 'ID do equipamento não foi fornecido.')
 
-        equipamento.save()
-
-        messages.success(request, 'Equipamento atualizado com sucesso!')
         return redirect('editar')

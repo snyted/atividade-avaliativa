@@ -2,7 +2,7 @@
 
 {% block content %}
 <main class="main-content">
-    <form class="row g-3" action="/cadastrar_equipamentos" method="post">
+    <form class="row g-3" action="/cadastrar_equipamentos/" method="post">
         {% csrf_token %}
         <div class="col-12-6">
             <label for="equipamento" class="form-label">Equipamento</label>
@@ -18,4 +18,3 @@
 </form>
 </main>
 {% endblock content %}
-
