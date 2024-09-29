@@ -1,7 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib import messages
 from app.models import Equipamentos
-
-# Create your views here.
 
 def home(request):
     return render(request, 'app/globals/home.html')
@@ -24,6 +23,27 @@ def listar_equipamentos(request):
     equipamento = request.GET.get('equipamento')
     if equipamento:
         values = values.filter(equipamento__icontains=equipamento)
-    return render(request, 'app/globals/cadastrar_equipamentos')
+    return render(request, 'app/globals/listar_equipamentos.html', {'equipamentos': values})
 
 
+def deletar_equipamento(request, equipamento_id):
+    equipamento = get_object_or_404(Equipamentos, id=equipamento_id)
+    equipamento.delete()
+    messages.success(request, 'Equipamento deletado com sucesso!') 
+    return redirect('editar') 
+
+def editar_equipamento(request):
+    if request.method == 'POST':
+        equipamento_id = request.POST.get('equipamento_id')
+        novo_nome = request.POST.get('equipamento')
+        nova_quantidade = request.POST.get('quantidade')
+
+        equipamento = get_object_or_404(Equipamentos, id=equipamento_id)
+
+        equipamento.equipamento = novo_nome
+        equipamento.quantidade = nova_quantidade
+
+        equipamento.save()
+
+        messages.success(request, 'Equipamento atualizado com sucesso!')
+        return redirect('editar')
