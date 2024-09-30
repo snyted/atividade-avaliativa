@@ -1,46 +1,20 @@
-{% extends 'app\index.html' %}
+{% extends "app\index.html" %}
 
 {% block content %}
-
-<div class="container-fluid">
-  <div class="row">
-    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block ">
-    </nav>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-
-      <section class="vh-100" style="background-color: #eee;">
-        <div class="container h-100">
-          <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-md-6">
-              <div class="card
- text-black" style="border-radius: 25px;">
-                <div class="card-body p-md-5">
-                  <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Cadastrar
- Equipamento</p>
-
-                  <main class="main-content">
-                    <form class="row g-3" action="/cadastrar_equipamentos/" method="post">
-                      {% csrf_token %}
-                      <div class="col-12-6">
-                        <label for="equipamento" class="form-label">Equipamento</label>
-                        <input type="text" class="form-control" id="equipamento" name="equipamento" required />
-                      </div>
-                      <div class="col-12-6">
-                        <label for="quantidade" class="form-label">Quantidade</label>
-                        <input type="text" class="form-control" id="quantidade" name="quantidade" required />
-                      </div>
-                      <div class="col-12">
-                        <button type="submit" class="btn btn-primary">Cadastrar</button>
-                      </div>
-                    </form>
-                  </main>
-                </div>
-              </div>
-            </div>
-          </div>
+<main class="main-content">
+    <form class="row g-3" action="/cadastrar_equipamentos/" method="post">
+        {% csrf_token %}
+        <div class="col-12-6">
+            <label for="equipamento" class="form-label">Equipamento</label>
+            <input type="text" class="form-control" id="equipamento" name="equipamento" required>
         </div>
-      </section>
-    </main>
-  </div>
-</div>
-{% endblock %}
+        <div class="col-12-6">
+            <label for="quantidade" class="form-label">Quantidade</label>
+            <input type="text" class="form-control" id="quantidade" name="quantidade">
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Cadastrar</button>
+        </div>
+</form>
+</main>
+{% endblock content %}

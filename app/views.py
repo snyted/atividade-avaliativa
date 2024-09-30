@@ -17,7 +17,6 @@ def relatorios_colaborador(request):
 def editar_colaborador(request):
     return render(request, 'app/globals/editar_colaborador.html')
 
-#SQLite não está indo os dados
 def cadastro_colaborador(request):
     if request.method == 'POST':
         colaborador = request.POST.get('colaborador')
@@ -53,25 +52,24 @@ def deletar_equipamento(request, equipamento_id):
 
 def editar_equipamento(request):
     if request.method == 'POST':
-        equipamento_id = request.POST.get('equipamento_id')
-        print(f'Equipamento ID recebido: {equipamento_id}')  # Debugging
+        id = request.POST.get('id')  
+        print(f'Equipamento ID recebido: {id}')  
 
         novo_nome = request.POST.get('equipamento')
         nova_quantidade = request.POST.get('quantidade')
-        print(f'Novo Nome: {novo_nome}, Nova Quantidade: {nova_quantidade}')  # Debugging
+        print(f'Novo Nome: {novo_nome}, Nova Quantidade: {nova_quantidade}')  
 
-        if equipamento_id:
-            # Tente pegar o objeto e atualizá-lo
+        if id:
             try:
-                equipamento = get_object_or_404(Equipamentos, id=equipamento_id)
+                equipamento = get_object_or_404(Equipamentos, id=id)
                 equipamento.equipamento = novo_nome
                 equipamento.quantidade = nova_quantidade
                 equipamento.save()
 
                 messages.success(request, 'Equipamento atualizado com sucesso!')
             except Exception as e:
-                print(f'Ocorreu um erro: {e}')  # Debugging
+                print(f'Ocorreu um erro: {e}')  
         else:
             messages.error(request, 'ID do equipamento não foi fornecido.')
 
-        return redirect('editar')
+        return redirect('editar')  
