@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from app.models import Equipamentos
+from app.models import Equipamentos, Cadastro_Colaboradores
 
 def home(request):
     return render(request, 'app/globals/home.html')
@@ -10,6 +10,22 @@ def form_imprestimo(request):
 
 def cadastrar_colaborador(request):
     return render(request, 'app/globals/cadastrar_colaborador.html')
+
+def relatorios_colaborador(request):
+    return render(request, 'app/globals/relatorios_colaborador.html')
+
+def editar_colaborador(request):
+    return render(request, 'app/globals/editar_colaborador.html')
+
+def cadastro_colaborador(request):
+    if request.method == 'POST':
+        colaborador = request.POST.get('colaborador')
+        matricula = request.POST.get('matricula')
+        senha = request.POST.get ('senha')
+        print(f'Colaborador: {colaborador}, Matrícula: {matricula}, Senha: {senha}')
+        if colaborador and matricula and senha:
+            Cadastro_Colaboradores.objects.create(colaborador=colaborador, matricula=matricula, senha=senha)
+            return render(request, 'app/globals/cadastrar_colaborador')
 
 def cadastrar_equipamentos(request):
     if request.method == 'POST':

@@ -1,0 +1,24 @@
+{% extends 'app/index.html' %}
+
+{% block content %}
+<main class="main-content">
+    {% if messages %}
+      <div class="alert alert-info">
+        {% for message in messages %}
+          {{ message }}<br />
+        {% endfor %}
+      </div>
+    {% endif %}
+
+<table class="table table-dark table-sm">
+    <thead>
+        <tr>
+          <th>Colaborador</th>
+          <th>Data</th>
+          <th>Equipamento</th>
+        </tr>
+      </thead>
+      
+</table>
+    
+{% endblock %}
