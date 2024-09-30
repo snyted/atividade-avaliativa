@@ -1,92 +1,87 @@
-{% extends "app/index.html" %}
+{% extends 'app/index.html' %}
 
 {% block content %}
-<main class="main-content">
+  <main class="main-content">
     {% if messages %}
-        <div class="alert alert-info">
-            {% for message in messages %}
-                {{ message }}<br>
-            {% endfor %}
-        </div>
+      <div class="alert alert-info">
+        {% for message in messages %}
+          {{ message }}<br />
+        {% endfor %}
+      </div>
     {% endif %}
 
     <table class="table table-dark table-sm">
-        <thead>
-            <tr>
-                <th>Nome do Equipamento</th>
-                <th>Quantidade</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for equipamento in equipamentos %}
-            <tr>
-                <td>{{ equipamento.equipamento }}</td>
-                <td>{{ equipamento.quantidade }}</td>
-                <td>
-                    <form action="{% url 'deletar_equipamento' equipamento.id %}" method="POST" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger">Deletar</button>
-                    </form>
-                    <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal" 
-        data-id="{{ equipamento.id }}" 
-        data-nome="{{ equipamento.equipamento }}" 
-        data-quantidade="{{ equipamento.quantidade }}">Editar</button>
-                </td>
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="3">Nenhum equipamento encontrado.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
+      <thead>
+        <tr>
+          <th>Nome do Equipamento</th>
+          <th>Quantidade</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for equipamento in equipamentos %}
+          <tr>
+            <td>{{ equipamento.equipamento }}</td>
+            <td>{{ equipamento.quantidade }}</td>
+            <td>
+              <form action="{% url 'deletar_equipamento' equipamento.id %}" method="POST" style="display:inline;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-danger">Deletar</button>
+              </form>
+              <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#editModal" data-id="{{ equipamento.id }}" data-nome="{{ equipamento.equipamento }}" data-quantidade="{{ equipamento.quantidade }}">Editar</button>
+            </td>
+          </tr>
+        {% empty %}
+          <tr>
+            <td colspan="3">Nenhum equipamento encontrado.</td>
+          </tr>
+        {% endfor %}
+      </tbody>
     </table>
 
     <!-- Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <form id="editForm" method="POST" action="{% url 'editar_equipamento' %}">
-                {% csrf_token %}
-                <input type="hidden" id="equipamento-id" name="equipamento_id">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="equipamento-nome">Nome do Equipamento</label>
-                        <input type="text" class="form-control" id="equipamento-nome" name="equipamento" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="equipamento-quantidade">Quantidade</label>
-                        <input type="number" class="form-control" id="equipamento-quantidade" name="quantidade" required>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Salvar alterações</button>
-                </div>
-            </form>
+          <form id="editForm" method="POST" action="{% url 'editar_equipamento' %}">
+            {% csrf_token %}
+            <input type="hidden" id="equipamento-id" name="equipamento_id" />
+            <div class="modal-body">
+              <div class="form-group">
+                <label for="equipamento-nome">Nome do Equipamento</label>
+                <input type="text" class="form-control" id="equipamento-nome" name="equipamento" required />
+              </div>
+              <div class="form-group">
+                <label for="equipamento-quantidade">Quantidade</label>
+                <input type="number" class="form-control" id="equipamento-quantidade" name="quantidade" required />
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+              <button type="submit" class="btn btn-primary">Salvar alterações</button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
-</div>
+  </main>
 
-</main>
-
-<script>
-$(document).ready(function() {
-    $('#editModal').on('show.bs.modal', function (event) {
-        var button = $(event.relatedTarget); // Botão que acionou o modal
-        var id = button.data('id'); // Extraindo ID do botão
-        var nome = button.data('nome');
-        var quantidade = button.data('quantidade');
-
-        var modal = $(this);
-        modal.find('#equipamento-id').val(id); // Preenche o ID no campo oculto
-        modal.find('#equipamento-nome').val(nome);
-        modal.find('#equipamento-quantidade').val(quantidade);
-
+  <script>
+    $(document).ready(function () {
+      $('#editModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) // Botão que acionou o modal
+        var id = button.data('id') // Extraindo ID do botão
+        var nome = button.data('nome')
+        var quantidade = button.data('quantidade')
+    
+        var modal = $(this)
+        modal.find('#equipamento-id').val(id) // Preenche o ID no campo oculto
+        modal.find('#equipamento-nome').val(nome)
+        modal.find('#equipamento-quantidade').val(quantidade)
+    
         // Debugging
-        console.log('ID do Equipamento:', id); // Verifique o valor aqui
-    });
-});
-
-</script>
-{% endblock content %}
+        console.log('ID do Equipamento:', id) // Verifique o valor aqui
+      })
+    })
+  </script>
+{% endblock %}

@@ -1,20 +1,20 @@
-{% extends "app\index.html" %}
+{% extends 'app\index.html' %}
 
 {% block content %}
-<main class="main-content">
+  <main class="main-content">
     <form class="row g-3" action="/cadastrar_equipamentos/" method="post">
-        {% csrf_token %}
-        <div class="col-12-6">
-            <label for="equipamento" class="form-label">Equipamento</label>
-            <input type="text" class="form-control" id="equipamento" name="equipamento" required>
-        </div>
-        <div class="col-12-6">
-            <label for="quantidade" class="form-label">Quantidade</label>
-            <input type="text" class="form-control" id="quantidade" name="quantidade">
-        </div>
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
-        </div>
-</form>
-</main>
-{% endblock content %}
+      {% csrf_token %}
+      <div class="col-12-6">
+        <label for="equipamento" class="form-label">Equipamento</label>
+        <input type="text" class="form-control" id="equipamento" name="equipamento" required />
+      </div>
+      <div class="col-12-6">
+        <label for="quantidade" class="form-label">Quantidade</label>
+        <input type="text" class="form-control" id="quantidade" name="quantidade" />
+      </div>
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
+      </div>
+    </form>
+  </main>
+{% endblock %}

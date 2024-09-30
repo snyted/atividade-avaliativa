@@ -8,6 +8,9 @@ def home(request):
 def form_imprestimo(request):
     return render(request, 'app/globals/controle_epi.html')
 
+def cadastrar_colaborador(request):
+    return render(request, 'app/globals/cadastrar_colaborador.html')
+
 def cadastrar_equipamentos(request):
     if request.method == 'POST':
         equipamento = request.POST.get('equipamento')
