@@ -17,6 +17,7 @@ def relatorios_colaborador(request):
 def editar_colaborador(request):
     return render(request, 'app/globals/editar_colaborador.html')
 
+#SQLite não está indo os dados
 def cadastro_colaborador(request):
     if request.method == 'POST':
         colaborador = request.POST.get('colaborador')
