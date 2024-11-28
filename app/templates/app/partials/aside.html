@@ -1,39 +1,41 @@
-<div class="sidebar p-3">
-    <ul class="list-unstyled ps-0">
-      <li class="mb-1">
-        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
-          Equipamento
-        </button>
-        <div class="collapse" id="home-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="/cadastrar_equipamentos" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cadastrar Equipamento</a></li>
-            <li><a href="/editar_equipamentos" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Editar Equipamento</a></li>
-          </ul>
-        </div>
+<div class="sidebar bg-dark text-white p-3 vh-100">
+  <ul class="nav nav-pills flex-column mb-auto fs-5">
+      <li class="nav-item">
+          <a href="#" class="nav-link text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="false">
+              <i class="bi bi-tools me-2"></i>
+              Equipamento
+          </a>
+          <div class="collapse" id="home-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="/cadastrar_equipamentos" class="link-light d-inline-flex text-decoration-none rounded">Cadastrar Equipamento</a></li>
+                  <li><a href="/editar_equipamentos" class="link-light d-inline-flex text-decoration-none rounded">Editar Equipamento</a></li>
+              </ul>
+          </div>
       </li>
-      <li class="mb-1">
-        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
-          Controle EPI
-        </button>
-        <div class="collapse" id="dashboard-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="/registrar_acao" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Registrar Ação</a></li>
-            <li><a href="#" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Relatórios</a></li>
-          </ul>
-        </div>
+      <li class="nav-item">
+          <a href="#" class="nav-link text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#dashboard-collapse" aria-expanded="false">
+              <i class="bi bi-clipboard-check me-2"></i>
+              Controle EPI
+          </a>
+          <div class="collapse" id="dashboard-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="/registrar_acao" class="link-light d-inline-flex text-decoration-none rounded">Registrar Ação</a></li>
+                  <li><a href="#" class="link-light d-inline-flex text-decoration-none rounded">Relatórios</a></li>
+              </ul>
+          </div>
       </li>
-      <li class="mb-1">
-        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
-          Colaborador
-        </button>
-        <div class="collapse" id="orders-collapse">
-          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-            <li><a href="/cadastrar_colaborador" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Cadastrar Colaborador</a></li>
-            <li><a href="/relatorios_colaborador" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Relatórios</a></li>
-            <li><a href="/editar_colaborador" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">Editar Colaborador</a></li>
-          </ul>
-        </div>
+      <li class="nav-item">
+          <a href="#" class="nav-link text-white d-flex align-items-center" data-bs-toggle="collapse" data-bs-target="#orders-collapse" aria-expanded="false">
+              <i class="bi bi-person-lines-fill me-2"></i>
+              Colaborador
+          </a>
+          <div class="collapse" id="orders-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                  <li><a href="/cadastrar_colaborador" class="link-light d-inline-flex text-decoration-none rounded">Cadastrar Colaborador</a></li>
+                  <li><a href="/relatorios_colaborador" class="link-light d-inline-flex text-decoration-none rounded">Relatórios</a></li>
+                  <li><a href="/editar_colaborador" class="link-light d-inline-flex text-decoration-none rounded">Editar Colaborador</a></li>
+              </ul>
+          </div>
       </li>
-      
-    </ul>
-  </div>
+  </ul>
+</div>
