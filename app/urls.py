@@ -5,8 +5,8 @@ urlpatterns = [
     # Início
     path('', views.home, name="home"),
     # Equipamentos
-    path('cadastrar_equipamentos/', views.cadastrar_equipamentos, name="cadastrar"),
-    path('editar_equipamentos/', views.editar_equipamentos, name='editar'),
+    path('cadastrar_equipamentos/', views.cadastrar_equipamentos, name="cadastrar_equipamentos"),
+    path('editar_equipamentos/', views.editar_equipamentos, name='editar_equipamentos'),
     path('deletar/<int:equipamento_id>/', views.deletar_equipamento, name='deletar_equipamento'),
     path('editar_equipamento/<int:equipamento_id>/', views.editar_equipamento, name='editar_equipamento'),
     path('verificar_equipamento/', views.verificar_equipamento, name='verificar_equipamento'),
