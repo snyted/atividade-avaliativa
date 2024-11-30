@@ -1,74 +1,102 @@
 {% extends "app/index.html" %}
 
 {% block content %}
-    </nav>
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-4">
-      <section class="vh-100 d-flex align-items-center justify-content-center bg-light">
-        <div class="container">
-          <div class="row justify-content-center">
-            <div class="col-md-8 col-lg-6">
-              <div class="card shadow-sm rounded-3">
-                <div class="card-body p-5">
-                  <form>
-                    <div class="form-group mb-3">
-                      <label for="colaborador" class="form-label">Colaborador</label>
-                      <input type="text" id="colaborador" class="form-control" placeholder="Colaborador" required>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <label for="equipamento" class="form-label">Equipamento</label>
-                      <input type="text" id="equipamento" class="form-control" placeholder="Equipamento" required>
-                    </div>
-
-                    <div class="row mb-3">
-                      <div class="col-md-6">
-                        <label for="dataEmprestimo" class="form-label">Data de Empréstimo</label>
-                        <input type="date" id="dataEmprestimo" class="form-control" required>
-                      </div>
-                      <div class="col-md-6">
-                        <label for="dataDevolucao" class="form-label">Data Prevista de Devolução</label>
-                        <input type="date" id="dataDevolucao" class="form-control" required>
-                      </div>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <label for="status" class="form-label">Status</label>
-                      <select id="status" class="form-control" required>
-                        <option value="emprestado">Emprestado</option>
-                        <option value="emuso">Em Uso</option>
-                        <option value="fornecido">Fornecido</option>
-                        <option value="devolvido">Devolvido</option>
-                        <option value="danificado">Danificado</option>
-                        <option value="perdido">Perdido</option>
-                      </select>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <label for="condicoes" class="form-label">Condições do Equipamento</label>
-                      <input type="text" id="condicoes" class="form-control" placeholder="Condições do equipamento" required>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <label for="dataDevolucaoReal" class="form-label" hidden>Data da Devolução</label>
-                      <input type="date" id="dataDevolucaoReal" class="form-control" required>
-                    </div>
-
-                    <div class="form-group mb-3">
-                      <label for="observacoes" class="form-label" hidden>Observação na Devolução/Perda</label>
-                      <textarea id="observacoes" class="form-control" rows="3" placeholder="Observação na devolução/perda" required></textarea>
-                    </div>
-
-                    <div class="d-grid">
-                      <button type="submit" class="btn btn-primary">Registrar Ação</button>
-                    </div>
-                  </form>
+</nav>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-4">
+  <section class="vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-6">
+          <div class="card shadow-sm rounded-3">
+            <div class="card-body p-5">
+              <form id="registrarAcaoForm" method="POST" action="{% url 'registrar_acao' %}">
+                {% csrf_token %}
+                <div class="form-group mb-3">
+                  <label for="colaborador" class="form-label">Colaborador</label>
+                  <input type="text" id="colaborador" name="colaborador" class="form-control" placeholder="Colaborador" required>
                 </div>
-              </div>
+
+                <div class="form-group mb-3">
+                  <label for="equipamento" class="form-label">Equipamento</label>
+                  <input type="text" id="equipamento" name="equipamento" class="form-control" placeholder="Equipamento" required>
+                </div>
+
+                <div class="row mb-3">
+                  <div class="col-md-6">
+                    <label for="dataEmprestimo" class="form-label">Data de Empréstimo</label>
+                    <input type="date" id="dataEmprestimo" name="dataEmprestimo" class="form-control" required>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="dataDevolucao" class="form-label">Data Prevista de Devolução</label>
+                    <input type="date" id="dataDevolucao" name="dataDevolucao" class="form-control" required>
+                  </div>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="status" class="form-label">Status</label>
+                  <select id="status" name="status" class="form-control" required>
+                    <option value="emprestado">Emprestado</option>
+                    <option value="emuso">Em Uso</option>
+                    <option value="fornecido">Fornecido</option>
+                    <option value="devolvido">Devolvido</option>
+                    <option value="danificado">Danificado</option>
+                    <option value="perdido">Perdido</option>
+                  </select>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="condicoes" class="form-label">Condições do Equipamento</label>
+                  <input type="text" id="condicoes" name="condicoes" class="form-control" placeholder="Condições do equipamento" required>
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="dataDevolucaoReal" class="form-label" hidden>Data da Devolução</label>
+                  <input type="date" id="dataDevolucaoReal" name="dataDevolucaoReal" class="form-control">
+                </div>
+
+                <div class="form-group mb-3">
+                  <label for="observacoes" class="form-label" hidden>Observação na Devolução/Perda</label>
+                  <textarea id="observacoes" name="observacoes" class="form-control" rows="3" placeholder="Observação na devolução/perda"></textarea>
+                </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Registrar Ação</button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </div>
+  </section>
+</main>
+</div>
 </div>
 {% endblock content %}
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form = document.getElementById('registrarAcaoForm');
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+
+    const colaborador = document.getElementById('colaborador').value;
+    const equipamento = document.getElementById('equipamento').value;
+
+    const colaboradorExists = await fetch(`{% url 'verificar_colaborador' %}?colaborador=${colaborador}`).then(res => res.json()).then(data => data.exists);
+    const equipamentoExists = await fetch(`{% url 'verificar_equipamento' %}?equipamento=${equipamento}`).then(res => res.json()).then(data => data.exists);
+
+    if (!colaboradorExists) {
+      alert('Colaborador não encontrado.');
+      return;
+    }
+
+    if (!equipamentoExists) {
+      alert('Equipamento não encontrado.');
+      return;
+    }
+
+    form.submit();
+  });
+});
+</script>

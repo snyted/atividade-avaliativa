@@ -1,0 +1,115 @@
+{% extends "app/index.html" %}
+{% block content %}
+<main class="main-content">
+  {% if messages %}
+  <div class="alert alert-info">
+    {% for message in messages %} {{ message }}<br />
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <div class="card-deck w-100 p-3">
+    {% for colaborador in colaboradores %}
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ colaborador.colaborador }}</h5>
+        <p class="card-text">Matrícula: {{ colaborador.matricula }}</p>
+        <form action="{% url 'deletar_colaborador' colaborador.id %}" method="POST" style="display: inline">
+          {% csrf_token %}
+          <input type="hidden" name="colaborador_id" value="{{ colaborador.id }}">
+          <button type="submit" name="delete" class="btn btn-danger">Deletar</button>
+        </form>
+        <button
+          type="button"
+          class="btn btn-warning"
+          data-bs-toggle="modal"
+          data-bs-target="#editModal"
+          data-id="{{ colaborador.id }}"
+          data-nome="{{ colaborador.colaborador }}"
+          data-matricula="{{ colaborador.matricula }}"
+          data-senha="{{ colaborador.senha }}"
+        >
+          Editar
+        </button>
+      </div>
+    </div>
+    {% empty %}
+    <p>Nenhum colaborador encontrado.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="editForm" method="POST" action="">
+          {% csrf_token %}
+          <input type="hidden" id="id" name="colaborador_id" />
+          <div class="modal-body">
+            <div class="form-group">
+              <label for="colaborador">Nome do Colaborador</label>
+              <input type="text" class="form-control" id="colaborador" name="colaborador" required />
+            </div>
+            <div class="form-group">
+              <label for="matricula">Matrícula</label>
+              <input type="text" class="form-control" id="matricula" name="matricula" required />
+            </div>
+            <div class="form-group">
+              <label for="senha">Senha</label>
+              <input type="password" class="form-control" id="senha" name="senha" required />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+            <button type="submit" name="save" class="btn btn-primary">Salvar alterações</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  console.log('JavaScript carregado e DOMContentLoaded');  // Mensagem de debug
+
+  const buttons = document.querySelectorAll('[data-bs-toggle="modal"][data-bs-target="#editModal"]');
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      console.log('Botão de editar clicado:', button);  // Mensagem de debug
+    });
+  });
+
+  const editModal = document.getElementById('editModal');
+  if (!editModal) {
+    console.error('Modal não encontrado');  // Mensagem de debug para verificar a presença do modal
+  }
+  editModal.addEventListener('show.bs.modal', (event) => {
+    console.log('Modal sendo exibido');  // Mensagem de debug
+    const button = event.relatedTarget;
+    const id = button.getAttribute('data-id');
+    const nome = button.getAttribute('data-nome');
+    const matricula = button.getAttribute('data-matricula');
+    const senha = button.getAttribute('data-senha');
+
+    console.log(`Dados recebidos: ID=${id}, Nome=${nome}, Matrícula=${matricula}, Senha=${senha}`);  // Mensagem de debug
+
+    const modal = document.getElementById('editModal');
+    modal.querySelector('#id').value = id;
+    modal.querySelector('#colaborador').value = nome;
+    modal.querySelector('#matricula').value = matricula;
+    modal.querySelector('#senha').value = senha;
+
+    const actionUrl = "{% url 'editar_colaborador_id' colaborador_id=0 %}".replace("0", id);
+    modal.querySelector('#editForm').setAttribute('action', actionUrl);
+    console.log(`Form action updated to: ${actionUrl}`);  // Mensagem de debug
+  });
+
+  const editForm = document.getElementById('editForm');
+  editForm.addEventListener('submit', (event) => {
+    console.log('Form submission initiated');  // Mensagem de debug
+  });
+});
+</script>
+
+{% endblock %}

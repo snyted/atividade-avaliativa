@@ -1,24 +1,51 @@
-{% extends 'app/index.html' %}
+{% extends "app/index.html" %}
 
 {% block content %}
-<main class="main-content">
-    {% if messages %}
-      <div class="alert alert-info">
-        {% for message in messages %}
-          {{ message }}<br />
-        {% endfor %}
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 p-4">
+  <section class="vh-100 d-flex align-items-center justify-content-center bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12">
+          <div class="card shadow-sm rounded-3">
+            <div class="card-body p-5">
+              <h2 class="mb-4 fw-bold text-center">Relatórios</h2>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Colaborador</th>
+                    <th>Equipamento</th>
+                    <th>Data de Empréstimo</th>
+                    <th>Data de Devolução</th>
+                    <th>Status</th>
+                    <th>Condições</th>
+                    <th>Data de Devolução Real</th>
+                    <th>Observações</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for acao in acoes %}
+                    <tr>
+                      <td>{{ acao.colaborador.colaborador }}</td>
+                      <td>{{ acao.equipamento.equipamento }}</td>
+                      <td>{{ acao.dataEmprestimo }}</td>
+                      <td>{{ acao.dataDevolucao }}</td>
+                      <td>{{ acao.status }}</td>
+                      <td>{{ acao.condicoes }}</td>
+                      <td>{{ acao.dataDevolucaoReal }}</td>
+                      <td>{{ acao.observacoes }}</td>
+                    </tr>
+                  {% empty %}
+                    <tr>
+                      <td colspan="8" class="text-center">Nenhuma ação registrada</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
       </div>
-    {% endif %}
-
-<table class="table table-dark table-sm">
-    <thead>
-        <tr>
-          <th>Colaborador</th>
-          <th>Data</th>
-          <th>Equipamento</th>
-        </tr>
-      </thead>
-      
-</table>
-    
+    </div>
+  </section>
+</main>
 {% endblock %}
